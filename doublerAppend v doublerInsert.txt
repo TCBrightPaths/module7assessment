@@ -1,0 +1,17 @@
+* the insert function took miliseconds compared to the append function. Seems adding to the beginning was easier than adding to the back. 
+
+        array: tiny,    small,    medium,   large,  xlarge
+function
+append:       195.6mus  135.3mus  332.8mus  1.40ms  6.15ms
+insert:       72.2mus   96.8mus   332.7mus  16.07ms 1.66s
+
+
+Explain the pattern:
+
+	Up until I put in the mediumArray, the doublerInsert function was running faster and the doublerAppend function was running slower. But the difference between the two functions for those first two arrays (tinyArray & smallArray) was minimal. Once you get to the mediumArray, the two functions are running at almost the exact same speed. The biggest difference between the runtime of the two functions comes from the inputs of the large and extra large arrays. Then, the difference in runtime is noticably wider. The insert method is considerably slower than the append method. So as to the questions of which function scales better, the answer is the doublerAppend function which uses the push method. 
+
+Why?
+
+	Why is the doublerInsert method so much slower at scale than the doublerAppend method. When using the doublerAppend method, one is only adding an item onto the end of an array. Think of it as stacking a bookshelf with books. DoublerAppend is adding a single book to the end of the line to eventually fill the shelf. In contrast, the doublerInsert method is inserting an item into the beginning of the array. With the doublerInsert method, you have to move all of the books down to make space at the front of the shelf. At first, that's easy because it's only a small number of books. But the more books you add to the shelf the heavier and harder it is to push them ALL down so that you can make space for a new book at the beginning/front of the shelf. It's much easier to simply load your new books onto the end. In this same way, the doublerAppend method using the push method is easier to use at scale. 
+
+Extra Credit for Step 2 is commentted in writeCode.js.
